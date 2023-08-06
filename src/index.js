@@ -7,7 +7,7 @@ import TicketMasterEvents from './otherScripts';
 function getEvents(keyWord) {
   TicketMasterEvents.getEvents(keyWord)
     .then(function (response) {
-      if (response._embedded) {
+      if (response._embedded.events) {
         printElements(response, keyWord);
       } else {
         printError(response, keyWord);
@@ -16,9 +16,15 @@ function getEvents(keyWord) {
 }
 
 
-function printElements(response, keyWord) {
-  document.querySelector('#showResponse').innerText = `Results for: ${keyWord} is ${response._embedded.events}.
-  < The temperature in Kelvins is ${response.main} degrees.`;
+function printElements(response, keyWord,) {
+  let eventNames = '';
+  const events = response._embedded.events;
+  for (let event of events) {
+    eventNames += event.name + ', ';
+    
+  }
+  document.querySelector('#showResponse').innerText = `Results for: ${keyWord} is ${eventNames}.`;
+
 }
 
 function printError(error, keyWord) {
@@ -39,3 +45,11 @@ window.addEventListener("load", function () {
 
 
 
+//$.get('http://your-api-url/', function(data) {
+//    $.each(data, function(index, value) {
+        // Access the data you need here
+        // For example, to access the 'address' property of each object:
+//        var address = value.address;
+        // You can then pass this data to another function or do something with it
+//    });
+//});
