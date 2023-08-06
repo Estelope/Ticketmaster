@@ -4,7 +4,19 @@
   <title>Untitled</title>
 </head>
 <body>
-  <div><img src="./assets/images/mailchimp-Cy5dya5MAlI-unsplash.jpg"alt="monke"></div>
-  
+  <div class="container">
+    <h1>Search for an Event to get ticket info!</h1>
+    <p>To get a list of current events  please enter the city name or keyword related to the event :</p>
+    <pre>
+      Portland
+      Bob Marley
+      Albuquerque
+    </pre>
+    <form>
+      <label for="keyWord">Enter a location:</label>
+      <input id="keyWord" type="text" name="keyWord">
+      <button type="submit" class="btn-success" id="keyWordSubmit">Get Results</button>
+    </form>
+    <p id="showResponse"></p>
 </body>
 </html>
